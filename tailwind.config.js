@@ -4,7 +4,11 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage:{
+        'office':"url('/assets/images/office.png')"
+      }
+    },
   },
   plugins: [],
 }

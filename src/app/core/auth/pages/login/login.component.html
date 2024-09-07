@@ -1,1 +1,24 @@
-<p>login works!</p>
+<div class="w-screen h-screen bg-blue-200 flex flex-col lg:flex-row">
+    <div class="w-full h-[30%] lg:w-[40%] lg:h-full bg-office bg-center bg-cover p-5">
+        <div class="w-full flex items-center justify-center gap-2">
+            <img class="w-20 h-20" src="../../../../../assets/logo/RE.png" alt="logo">
+            <p class="text-4xl font-bold font-serif text-blue-900">Rideware ERP</p>
+        </div>
+    </div>
+    <div class="w-full h-[70%] lg:w-[60%] lg:h-full bg-white flex items-center justify-center">
+        <div class="w-[95%] sm:w-[80%] md:w-[60%] lg:w-[50%] xl:w-[40%] flex flex-col gap-5">
+            <p class="font-medium text-3xl">Welcome back!</p>
+            <div class="w-full border border-gray-300 rounded-md p-3 gap-2">
+                <p class="font-medium text-2xl">Log in</p>
+                <form class="flex flex-col gap-1">
+                    <span for="email">Username :</span>
+                    <input class="h-7 border border-gray-200 rounded outline-none pl-1 focus:bg-gray-100" type="text">
+                    <span for="password">Password :</span>
+                    <input class="h-7 border border-gray-200 rounded outline-none pl-1 focus:bg-gray-100" type="password">
+                    <button class="w-full bg-black text-white font-medium p-1 rounded-md" type="submit">Login</button>
+                </form>
+                <p class="mt-2 w-full text-center text-sm text-gray-500 cursor-pointer hover:text-gray-700">Forgot password?</p>
+            </div>
+        </div>
+    </div>
+</div>
