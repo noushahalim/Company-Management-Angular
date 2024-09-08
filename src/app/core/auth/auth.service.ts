@@ -11,6 +11,11 @@ export class AuthService {
     constructor(private http:HttpClient) {}
 
     api = environment.baseUrl;
+    token = localStorage.getItem('token');
+    companyId = localStorage.getItem('companyId');
+    refreshToken = localStorage.getItem('refreshToken');
+    firstName = localStorage.getItem('firstName');
+    profileImage = localStorage.getItem('profileImage');
 
     login(data: Login):Observable<any>{
         const loginApi=`${this.api}/User/Login`
