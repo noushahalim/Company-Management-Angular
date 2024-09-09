@@ -1,0 +1,103 @@
+<app-sidenav [currentRoute]="'/company'">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center mb-8">Update Company Details</h1>
+      
+        <div class="flex justify-end mb-8">
+          <div class="flex items-center">
+            <img src="assets/company-logo.png" alt="Company Logo" class="w-16 h-16 mr-4">
+            <div class="flex flex-col justify-between">
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2">
+                <i class="fas fa-camera mr-2"></i> Update Logo
+              </button>
+              <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                <i class="fas fa-trash-alt mr-2"></i> Delete Logo
+              </button>
+            </div>
+          </div>
+        </div>
+      
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="mb-4">
+              <span class="block text-gray-700 text-sm font-bold mb-2" for="name">
+                Company Name
+              </span>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Company Name">
+            </div>
+            <div class="mb-4">
+              <span class="block text-gray-700 text-sm font-bold mb-2" for="shortName">
+                Short Name
+              </span>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="shortName" type="text" placeholder="Short Name">
+            </div>
+            <div class="mb-4">
+              <span class="block text-gray-700 text-sm font-bold mb-2" for="contactPersonName">
+                Contact Person Name
+              </span>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="contactPersonName" type="text" placeholder="Contact Person Name">
+            </div>
+            <div class="mb-4">
+              <span class="block text-gray-700 text-sm font-bold mb-2" for="addressLine1">
+                Address Line 1
+              </span>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="addressLine1" type="text" placeholder="Address Line 1">
+            </div>
+            <div class="mb-4">
+              <span class="block text-gray-700 text-sm font-bold mb-2" for="addressLine2">
+                Address Line 2
+              </span>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="addressLine2" type="text" placeholder="Address Line 2">
+            </div>
+            <div class="mb-4">
+              <span class="block text-gray-700 text-sm font-bold mb-2" for="zipCode">
+                Zip Code
+              </span>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="zipCode" type="text" placeholder="Zip Code">
+            </div>
+            <div class="mb-4">
+              <span class="block text-gray-700 text-sm font-bold mb-2" for="emailId">
+                Email
+              </span>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="emailId" type="email" placeholder="Email">
+            </div>
+            <div class="mb-4">
+              <span class="block text-gray-700 text-sm font-bold mb-2" for="phoneNo1">
+                Phone Number 1
+              </span>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phoneNo1" type="tel" placeholder="Phone Number 1">
+            </div>
+            <div class="mb-4">
+              <span class="block text-gray-700 text-sm font-bold mb-2" for="phoneNo2">
+                Phone Number 2
+              </span>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phoneNo2" type="tel" placeholder="Phone Number 2">
+            </div>
+            <div class="mb-4">
+              <span class="block text-gray-700 text-sm font-bold mb-2" for="vatNo">
+                VAT Number
+              </span>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="vatNo" type="text" placeholder="VAT Number">
+            </div>
+            <div class="mb-4">
+              <span class="block text-gray-700 text-sm font-bold mb-2" for="crNo">
+                CR Number
+              </span>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="crNo" type="text" placeholder="CR Number">
+            </div>
+            <div class="mb-4">
+              <span class="block text-gray-700 text-sm font-bold mb-2" for="currencyId">
+                Currency
+              </span>
+              <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="currencyId">
+                <option value="">Select Currency</option>
+              </select>
+            </div>
+          </div>
+          <div class="text-center mt-4">
+            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+              <i class="fas fa-check mr-2"></i> Update Details
+            </button>
+          </div>
+        </form>
+    </div>
+</app-sidenav>

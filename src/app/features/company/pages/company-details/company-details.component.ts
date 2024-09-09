@@ -3,6 +3,7 @@ import { CompanyService } from '../../company.service';
 import { Company } from '../../models/company.model';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { environment } from 'src/environment/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-company-details',
@@ -10,7 +11,7 @@ import { environment } from 'src/environment/environment';
   styleUrls: ['./company-details.component.css']
 })
 export class CompanyDetailsComponent implements OnInit{
-  constructor(private companyService : CompanyService, private authService : AuthService) {}
+  constructor(private companyService : CompanyService, private authService : AuthService, private route:Router) {}
 
   company! : Company;
   logo! : string;
@@ -23,6 +24,9 @@ export class CompanyDetailsComponent implements OnInit{
       const token = this.authService.token;
 
       this.logo = `${environment.baseUrl}/Company/GetCompanyLogo?photoName=${photoName}&token=${token}`;
+
+      localStorage.setItem('companyLogo', this.logo);
+      this.companyService.companyLogo = this.logo;
     }
 
     const data = {
@@ -49,6 +53,6 @@ export class CompanyDetailsComponent implements OnInit{
   }
 
   onUpdateClick() {
-    alert('Update clicked for company:');
+    this.route.navigate(['/company/updateCompany'])
   }
 }

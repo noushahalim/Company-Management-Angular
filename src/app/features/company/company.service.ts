@@ -12,6 +12,7 @@ export class CompanyService {
 
   api = environment.baseUrl;
   companyData = this.getCompanyData();
+  companyLogo = localStorage.getItem('companyLogo');
 
   getCompanyData(): any {
     const companyDataString = localStorage.getItem('companyData');
