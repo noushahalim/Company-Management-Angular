@@ -19,8 +19,7 @@ export class AuthService {
 
     login(data: Login):Observable<any>{
         const loginApi=`${this.api}/User/Login`
-
-        return this.http.post(loginApi,data)
+        return this.http.post(loginApi,data);
     }
     
 }

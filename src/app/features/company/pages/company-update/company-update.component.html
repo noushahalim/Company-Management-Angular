@@ -4,100 +4,144 @@
       
         <div class="flex justify-end mb-8">
           <div class="flex items-center">
-            <img src="assets/company-logo.png" alt="Company Logo" class="w-16 h-16 mr-4">
+            <img [src]="logo" alt="Company Logo" class="w-16 h-16 mr-4">
             <div class="flex flex-col justify-between">
-              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2">
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2" (click)="openModel()">
                 <i class="fas fa-camera mr-2"></i> Update Logo
               </button>
-              <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+              <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" (click)="deleteLogo()">
                 <i class="fas fa-trash-alt mr-2"></i> Delete Logo
               </button>
             </div>
           </div>
         </div>
       
-        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form [formGroup]="updationForm" (ngSubmit)="onSubmit()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="mb-4">
               <span class="block text-gray-700 text-sm font-bold mb-2" for="name">
                 Company Name
               </span>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Company Name">
+              <input formControlName="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Company Name">
             </div>
             <div class="mb-4">
               <span class="block text-gray-700 text-sm font-bold mb-2" for="shortName">
                 Short Name
               </span>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="shortName" type="text" placeholder="Short Name">
+              <input formControlName="shortName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="shortName" type="text" placeholder="Short Name">
             </div>
             <div class="mb-4">
               <span class="block text-gray-700 text-sm font-bold mb-2" for="contactPersonName">
                 Contact Person Name
               </span>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="contactPersonName" type="text" placeholder="Contact Person Name">
+              <input formControlName="contactPersonName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="contactPersonName" type="text" placeholder="Contact Person Name">
             </div>
             <div class="mb-4">
               <span class="block text-gray-700 text-sm font-bold mb-2" for="addressLine1">
                 Address Line 1
               </span>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="addressLine1" type="text" placeholder="Address Line 1">
+              <input formControlName="addressLine1" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="addressLine1" type="text" placeholder="Address Line 1">
             </div>
             <div class="mb-4">
               <span class="block text-gray-700 text-sm font-bold mb-2" for="addressLine2">
                 Address Line 2
               </span>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="addressLine2" type="text" placeholder="Address Line 2">
+              <input formControlName="addressLine2" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="addressLine2" type="text" placeholder="Address Line 2">
             </div>
             <div class="mb-4">
               <span class="block text-gray-700 text-sm font-bold mb-2" for="zipCode">
                 Zip Code
               </span>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="zipCode" type="text" placeholder="Zip Code">
+              <input formControlName="zipCode" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="zipCode" type="text" placeholder="Zip Code">
             </div>
             <div class="mb-4">
               <span class="block text-gray-700 text-sm font-bold mb-2" for="emailId">
                 Email
               </span>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="emailId" type="email" placeholder="Email">
+              <input formControlName="emailId" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="emailId" type="email" placeholder="Email">
             </div>
             <div class="mb-4">
               <span class="block text-gray-700 text-sm font-bold mb-2" for="phoneNo1">
                 Phone Number 1
               </span>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phoneNo1" type="tel" placeholder="Phone Number 1">
+              <input formControlName="phoneNo1" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phoneNo1" type="tel" placeholder="Phone Number 1">
             </div>
             <div class="mb-4">
               <span class="block text-gray-700 text-sm font-bold mb-2" for="phoneNo2">
                 Phone Number 2
               </span>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phoneNo2" type="tel" placeholder="Phone Number 2">
+              <input formControlName="phoneNo2" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phoneNo2" type="tel" placeholder="Phone Number 2">
             </div>
             <div class="mb-4">
               <span class="block text-gray-700 text-sm font-bold mb-2" for="vatNo">
                 VAT Number
               </span>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="vatNo" type="text" placeholder="VAT Number">
+              <input formControlName="vatNo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="vatNo" type="text" placeholder="VAT Number">
             </div>
             <div class="mb-4">
               <span class="block text-gray-700 text-sm font-bold mb-2" for="crNo">
                 CR Number
               </span>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="crNo" type="text" placeholder="CR Number">
+              <input formControlName="crNo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="crNo" type="text" placeholder="CR Number">
             </div>
             <div class="mb-4">
               <span class="block text-gray-700 text-sm font-bold mb-2" for="currencyId">
                 Currency
               </span>
-              <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="currencyId">
-                <option value="">Select Currency</option>
+              <select *ngIf="selectedCurrency" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="currencyId">
+                <option value="{{selectedCurrency.id}}" disabled selected>{{selectedCurrency.symbol}} {{selectedCurrency.name}}</option>
+                <option *ngFor="let currency of allCurrency" value="{{currency.id}}">{{currency.symbol}} {{currency.name}}</option>
               </select>
             </div>
           </div>
           <div class="text-center mt-4">
-            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
               <i class="fas fa-check mr-2"></i> Update Details
             </button>
+            <p *ngIf="error" class="text-center relative top-3 mb-2 text-red-600">{{error}}</p>
           </div>
         </form>
     </div>
 </app-sidenav>
+
+<div *ngIf="showChangeLogoModal" class="fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-75 flex items-center justify-center">
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-md relative">
+    <button class="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
+      (click)="closeModal()">
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    <div class="mb-4">
+      <h2 class="text-lg font-semibold">Change Profile Picture</h2>
+    </div>
+    <form [formGroup]="logoChangeForm"
+      (ngSubmit)="updateLogo()">
+      <div class="mb-4">
+        <label class="block text-gray-700 font-semibold mb-2"
+          for="image-upload">Upload Image</label>
+        <input class="border border-gray-400 p-2 w-full" id="image-upload"
+          type="file" (change)="onImageUpload($event)" accept="image/*"
+          formControlName="image">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-semibold mb-2"
+          for="image-preview">Preview</label>
+        <div class="h-48 bg-gray-200 flex items-center justify-center">
+          <img *ngIf="previewImageSrc" [src]="previewImageSrc"
+            class="max-h-full max-w-full">
+          <span *ngIf="!previewImageSrc" class="text-gray-500">No image
+            selected</span>
+        </div>
+      </div>
+      <div class="flex justify-end">
+        <button [disabled]="buttonDisabled" type="submit"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -17,17 +17,24 @@ export class CompanyDetailsComponent implements OnInit{
   logo! : string;
 
   ngOnInit(): void {
-    this.company = this.companyService.companyData;
+    this.company = this.companyService.getCompanyData();
 
-    if(this.company.logo){
-      const photoName = this.company.logo;
-      const token = this.authService.token;
-
-      this.logo = `${environment.baseUrl}/Company/GetCompanyLogo?photoName=${photoName}&token=${token}`;
-
-      localStorage.setItem('companyLogo', this.logo);
-      this.companyService.companyLogo = this.logo;
+    if(this.companyService.companyLogo){
+      this.logo = this.companyService.companyLogo;
     }
+    else{
+      if(this.company.logo){
+        const photoName = this.company.logo;
+        const token = this.authService.token;
+  
+        this.logo = `${environment.baseUrl}/Company/GetCompanyLogo?photoName=${photoName}&token=${token}`;
+  
+        localStorage.setItem('companyLogo', this.logo);
+        this.companyService.companyLogo = this.logo;
+      }
+    }
+
+    
 
     const data = {
       "searchKeyword": "",

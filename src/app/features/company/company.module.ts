@@ -4,6 +4,7 @@ import { CompanyDetailsComponent } from './pages/company-details/company-details
 import { CompanyRoutingModule } from './company.routes';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CompanyUpdateComponent } from './pages/company-update/company-update.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { CompanyUpdateComponent } from './pages/company-update/company-update.co
   imports: [
     CommonModule,
     CompanyRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class CompanyModule { }

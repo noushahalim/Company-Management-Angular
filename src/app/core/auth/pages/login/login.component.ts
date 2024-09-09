@@ -81,7 +81,6 @@ export class LoginComponent implements OnInit{
       this.companyService.companyDetails(response.data.companyId).subscribe(
         (response)=>{
           localStorage.setItem('companyData', JSON.stringify(response.data));
-          this.companyService.companyData = response.data;
         },
         (error)=>{
           console.log(error);

@@ -11,7 +11,6 @@ export class CompanyService {
   constructor(private http:HttpClient) { }
 
   api = environment.baseUrl;
-  companyData = this.getCompanyData();
   companyLogo = localStorage.getItem('companyLogo');
 
   getCompanyData(): any {
@@ -27,15 +26,28 @@ export class CompanyService {
     return null;
   }
 
-  companyDetails(id: string):Observable<any>{
+  companyDetails(id: any):Observable<any>{
     const companyDetailsApi=`${this.api}/Company/GetCompanyById`;
-
     return this.http.post(companyDetailsApi,{id:id});
   }
 
   GetAllCurrency(data: object):Observable<any>{
     const GetAllCurrencyApi=`${this.api}/Company/GetAllCurrency`;
-
     return this.http.post(GetAllCurrencyApi,data);
+  }
+
+  updateCompany(data: object):Observable<any>{
+    const updateCompanyApi=`${this.api}/Company/UpdateCompany`;
+    return this.http.post(updateCompanyApi,data);
+  }
+
+  updateLogo(data:any):Observable<any>{
+    const updateLogoApi=`${this.api}/Company/UploadCompanyLogo`
+    return this.http.post(updateLogoApi,data)
+  }
+
+  removeLogo(id:any):Observable<any>{
+    const removeLogoApi=`${this.api}/Company/RemoveCompanyLogo`
+    return this.http.post(removeLogoApi,{id:id})
   }
 }
