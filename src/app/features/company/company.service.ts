@@ -27,8 +27,14 @@ export class CompanyService {
   }
 
   companyDetails(id: string):Observable<any>{
-    const companyDetailsApi=`${this.api}/Company/GetCompanyById`
+    const companyDetailsApi=`${this.api}/Company/GetCompanyById`;
 
-    return this.http.post(companyDetailsApi,{id:id})
+    return this.http.post(companyDetailsApi,{id:id});
+  }
+
+  GetAllCurrency(data: object):Observable<any>{
+    const GetAllCurrencyApi=`${this.api}/Company/GetAllCurrency`;
+
+    return this.http.post(GetAllCurrencyApi,data);
   }
 }
