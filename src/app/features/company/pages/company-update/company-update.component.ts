@@ -208,16 +208,26 @@ export class CompanyUpdateComponent implements OnInit{
         }
         this.companyService.removeLogo(companyId).subscribe(
           (response)=>{
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Deleted",
-              showConfirmButton: false,
-              timer: 1500
-            });
-            localStorage.removeItem('companyLogo');
-            this.companyService.companyLogo = '';
-            this.logo = '';
+            this.companyService.companyDetails(this.authService.companyId).subscribe(
+              (response)=>{
+                localStorage.setItem('companyData', JSON.stringify(response.data));
+                this.companyData = response.data;
+                localStorage.removeItem('companyLogo');
+                this.companyService.companyLogo = '';
+                this.logo = '';
+  
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Deleted",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+              },
+              (error)=>{
+                console.log(error);
+              }
+            )
           },
           (error:any)=>{
             console.log(error)

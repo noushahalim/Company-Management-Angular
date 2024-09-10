@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth/auth.service';
+import { CompanyService } from 'src/app/features/company/company.service';
 import Swal from 'sweetalert2'
 
 @Component({
@@ -9,7 +10,7 @@ import Swal from 'sweetalert2'
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent implements OnInit{
-  constructor(private route:Router, private authService:AuthService){}
+  constructor(private route : Router, private authService : AuthService, private companyService : CompanyService){}
 
   userName! : string | null;
   profileImage! : string | null;
@@ -60,6 +61,7 @@ export class SidenavComponent implements OnInit{
         this.authService.companyId = ''
         this.authService.firstName = ''
         this.authService.profileImage = ''
+        this.companyService.companyLogo = ''
         this.route.navigate(['/auth/login'])
       }
     })
