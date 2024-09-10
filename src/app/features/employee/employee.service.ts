@@ -24,4 +24,9 @@ export class EmployeeService {
     const getAllEmployeesApi=`${this.api}/Employee/GetAllEmployees`
     return this.http.post(getAllEmployeesApi,data)
   }
+
+  createEmployee(data: object):Observable<any>{
+    const createEmployeeApi=`${this.api}/Employee/CreateEmployee`;
+    return this.http.post(createEmployeeApi,data);
+  }
 }

@@ -3,19 +3,22 @@ import { CommonModule } from '@angular/common';
 import { EmployeesComponent } from './pages/employees/employees.component';
 import { EmployeeRoutingModule } from './employee.routes';
 import { SharedModule } from "../../shared/shared.module";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateEmployeeComponent } from './pages/create-employee/create-employee.component';
 
 
 
 @NgModule({
   declarations: [
-    EmployeesComponent
+    EmployeesComponent,
+    CreateEmployeeComponent
   ],
   imports: [
     CommonModule,
     EmployeeRoutingModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
 ]
 })
 export class EmployeeModule { }
