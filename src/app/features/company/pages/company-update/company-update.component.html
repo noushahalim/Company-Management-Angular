@@ -88,8 +88,9 @@
               <span class="block text-gray-700 text-sm font-bold mb-2" for="currencyId">
                 Currency
               </span>
-              <select *ngIf="selectedCurrency" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="currencyId">
-                <option value="{{selectedCurrency.id}}" disabled selected>{{selectedCurrency.symbol}} {{selectedCurrency.name}}</option>
+              <select formControlName="currencyId" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="currencyId">
+                <option *ngIf="selectedCurrency" value="{{selectedCurrency.id}}" disabled selected>{{selectedCurrency.symbol}} {{selectedCurrency.name}}</option>
+                <option *ngIf="!selectedCurrency" selected value="">Select one</option>
                 <option *ngFor="let currency of allCurrency" value="{{currency.id}}">{{currency.symbol}} {{currency.name}}</option>
               </select>
             </div>

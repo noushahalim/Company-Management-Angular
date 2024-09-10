@@ -5,13 +5,15 @@ import { EmployeeRoutingModule } from './employee.routes';
 import { SharedModule } from "../../shared/shared.module";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateEmployeeComponent } from './pages/create-employee/create-employee.component';
+import { UpdateEmployeeComponent } from './pages/update-employee/update-employee.component';
 
 
 
 @NgModule({
   declarations: [
     EmployeesComponent,
-    CreateEmployeeComponent
+    CreateEmployeeComponent,
+    UpdateEmployeeComponent
   ],
   imports: [
     CommonModule,

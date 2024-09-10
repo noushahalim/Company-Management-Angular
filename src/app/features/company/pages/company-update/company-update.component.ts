@@ -51,7 +51,7 @@ export class CompanyUpdateComponent implements OnInit{
       phoneNo2:['',[Validators.required,Validators.pattern(/^\d{10}$/)]],
       vatNo:['',[Validators.required]],
       crNo:['',[Validators.required]],
-      currencyId:[null,[Validators.required]]
+      currencyId:['',[Validators.required]]
     })  
 
     this.updationForm.patchValue(this.companyData)
