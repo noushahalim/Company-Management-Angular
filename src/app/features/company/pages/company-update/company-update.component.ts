@@ -33,11 +33,6 @@ export class CompanyUpdateComponent implements OnInit{
   imageFile : any = null;
 
   ngOnInit(): void {
-    if(this.companyService.companyLogo){
-      this.logo = this.companyService.companyLogo;
-    }
-
-    this.companyData = this.companyService.getCompanyData();
     this.updationForm = this.formBuilder.group({
       id:['',[Validators.required]],
       name:['',[Validators.required]],
@@ -54,30 +49,85 @@ export class CompanyUpdateComponent implements OnInit{
       currencyId:['',[Validators.required]]
     })  
 
-    this.updationForm.patchValue(this.companyData)
-
     this.logoChangeForm = this.formBuilder.group({
       image:[[],Validators.required]
     })
 
-    const data = {
-      "searchKeyword": "",
-      "pageIndex": 0,
-      "pageSize": 0
-    };
-    this.companyService.GetAllCurrency(data).subscribe(
-      (response)=>{
-        if (response?.data?.result) {
-          this.selectedCurrency = response.data.result.find(
-            (currency: any) => currency.id === this.companyData.currencyId
-          );
+    if(this.companyService.companyLogo){
+      this.logo = this.companyService.companyLogo;
+    }
+
+    this.companyData = this.companyService.getCompanyData();
+
+    if(this.companyData){
+      this.updationForm.patchValue(this.companyData)
+    }
+
+    if(!this.companyData){
+      this.companyService.companyDetails(this.authService.companyId).subscribe(
+        (response)=>{
+          localStorage.setItem('companyData', JSON.stringify(response.data));
+          this.companyData = response.data;
+
+          this.updationForm.patchValue(this.companyData)
+
+          if(this.companyData.logo){
+            const photoName = this.companyData.logo;
+            const token = this.authService.token;
+      
+            this.logo = `${environment.baseUrl}/Company/GetCompanyLogo?photoName=${photoName}&token=${token}`;
+      
+            localStorage.setItem('companyLogo', this.logo);
+            this.companyService.companyLogo = this.logo;
+          }
+
+          const data = {
+            "searchKeyword": "",
+            "pageIndex": 0,
+            "pageSize": 0
+          };
+          
+          this.companyService.GetAllCurrency(data).subscribe(
+            (response)=>{
+              if (response?.data?.result) {
+                this.selectedCurrency = response.data.result.find(
+                  (currency: any) => currency.id === this.companyData.currencyId
+                );
+              }
+              this.allCurrency = response.data.result;
+            },
+            (error)=>{
+              console.log(error);
+            }
+          )
+        },
+        (error)=>{
+          console.log(error);
         }
-        this.allCurrency = response.data.result;
-      },
-      (error)=>{
-        console.log(error);
-      }
-    )
+      )
+    }
+
+    if(this.companyData){
+      const data = {
+        "searchKeyword": "",
+        "pageIndex": 0,
+        "pageSize": 0
+      };
+      
+      this.companyService.GetAllCurrency(data).subscribe(
+        (response)=>{
+          if (response?.data?.result) {
+            this.selectedCurrency = response.data.result.find(
+              (currency: any) => currency.id === this.companyData.currencyId
+            );
+          }
+          this.allCurrency = response.data.result;
+        },
+        (error)=>{
+          console.log(error);
+        }
+      )
+    }
   }
 
   onSubmit(){

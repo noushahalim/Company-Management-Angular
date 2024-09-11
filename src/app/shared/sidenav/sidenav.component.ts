@@ -18,7 +18,7 @@ export class SidenavComponent implements OnInit{
     { label: 'Home', route: '/dashboard', icon: 'fas fa-home' },
     { label: 'Company', route: '/company', icon: 'fas fa-building' },
     { label: 'Employees', route: '/employees', icon: 'fas fa-users' },
-    { label: 'Settings', route: '/settings', icon: 'fas fa-cog' },
+    { label: 'Settings', icon: 'fas fa-cog' },
   ];
   profileMenuOpen = false;
   firstLetter : string | undefined = ''
@@ -55,14 +55,7 @@ export class SidenavComponent implements OnInit{
           showConfirmButton: false,
           timer: 1500
         });
-        localStorage.clear()
-        this.authService.token = ''
-        this.authService.refreshToken = ''
-        this.authService.companyId = ''
-        this.authService.firstName = ''
-        this.authService.profileImage = ''
-        this.companyService.companyLogo = ''
-        this.route.navigate(['/auth/login'])
+        this.authService.logout()
       }
     })
   }

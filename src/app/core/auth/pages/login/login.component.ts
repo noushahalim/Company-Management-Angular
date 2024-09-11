@@ -16,12 +16,11 @@ export class LoginComponent implements OnInit{
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private route:Router,
-    private companyService: CompanyService,
     private employeeService: EmployeeService
   ) { }
 
   loginForm!:FormGroup;
-  backendError:string=''
+  backendError:string='';
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -56,10 +55,12 @@ export class LoginComponent implements OnInit{
       localStorage.setItem('companyId', response.data.companyId);
       localStorage.setItem('refreshToken', response.data.refreshToken);
       localStorage.setItem('firstName', response.data.firstName);
+      localStorage.setItem('employeeId', response.data.employeeId);
       this.authService.token = response.data.token;
       this.authService.companyId = response.data.companyId;
       this.authService.refreshToken = response.data.refreshToken;
       this.authService.firstName = response.data.firstName;
+      this.authService.employeeId = response.data.employeeId;
 
       this.employeeService.loginedEmployeeDetails().subscribe(
         (response)=>{
@@ -77,17 +78,8 @@ export class LoginComponent implements OnInit{
           console.log(error);
         }
       )
-      
-      this.companyService.companyDetails(response.data.companyId).subscribe(
-        (response)=>{
-          localStorage.setItem('companyData', JSON.stringify(response.data));
-        },
-        (error)=>{
-          console.log(error);
-        }
-      )
 
-      this.route.navigate(['/dashboard'])
+      this.route.navigate(['/company'])
     }
   }
 }

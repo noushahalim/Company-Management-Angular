@@ -36,19 +36,22 @@ export class UpdateEmployeeComponent implements OnInit{
   imageFile : any = null;
 
   ngOnInit(): void {
-    if(this.authService.profileImage){
-      this.profile = this.authService.profileImage;
-    }
-
     this.activatedRoute.data.subscribe(
       (data)=>{
         this.employeeData = data['employeeData'].data;
-        
+
+        if(this.employeeData.profilePhotoName){
+          const photoName = this.employeeData.profilePhotoName;
+          const token = this.authService.token;
+    
+          this.profile = `${environment.baseUrl}/Employee/GetEmployeeProfilePhoto?photoName=${photoName}&token=${token}`;
+        }
       },
       (error)=>{
         console.log(error);
       }
     )
+    
     this.updationForm = this.formBuilder.group({
       id:['',[Validators.required]],
       firstName:['',[Validators.required]],
@@ -114,8 +117,11 @@ export class UpdateEmployeeComponent implements OnInit{
           this.employeeService.employeeDetails(this.employeeData.id).subscribe(
             (response)=>{
               this.employeeData = response.data;
-              localStorage.setItem('firstName', response.data.firstName);
-              this.authService.firstName = response.data.firstName;
+
+              if(this.employeeData.id === this.authService.employeeId){
+                localStorage.setItem('firstName', response.data.firstName);
+                this.authService.firstName = response.data.firstName;
+              }
             },
             (error)=>{
               console.log(error);
@@ -185,8 +191,11 @@ export class UpdateEmployeeComponent implements OnInit{
           
                 this.profile = `${environment.baseUrl}/Employee/GetEmployeeProfilePhoto?photoName=${photoName}&token=${token}`;
           
-                localStorage.setItem('profileImage', this.profile);
-                this.authService.profileImage = this.profile;
+                if(this.employeeData.id === this.authService.employeeId){
+                  localStorage.setItem('profileImage', this.profile);
+                  this.authService.profileImage = this.profile;
+                }
+                
                 this.showChangeProfileModal=false;
                 this.buttonDisabled=false;
               }
@@ -237,10 +246,13 @@ export class UpdateEmployeeComponent implements OnInit{
             this.employeeService.employeeDetails(this.employeeData.id).subscribe(
               (response)=>{
                 this.employeeData = response.data;
-                localStorage.removeItem('profileImage');
-                this.authService.profileImage = '';
                 this.profile = '';
-  
+                
+                if(this.employeeData.id === this.authService.employeeId){
+                  localStorage.removeItem('profileImage');
+                  this.authService.profileImage = '';
+                }
+                
                 Swal.fire({
                   position: "top-end",
                   icon: "success",

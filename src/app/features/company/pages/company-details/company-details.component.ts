@@ -11,47 +11,68 @@ import { Router } from '@angular/router';
   styleUrls: ['./company-details.component.css']
 })
 export class CompanyDetailsComponent implements OnInit{
-  constructor(private companyService : CompanyService, private authService : AuthService, private route:Router) {}
+  constructor(
+    private companyService : CompanyService,
+    private authService : AuthService,
+    private route: Router
+  ) {}
 
-  company! : Company;
+  company : Company = {
+    id: '',
+    name: '',
+    shortName: '',
+    vatNo: '',
+    crNo: '',
+    addressLine1: '',
+    addressLine2: '',
+    zipCode: '',
+    emailId: '',
+    phoneNo1: '',
+    phoneNo2: '',
+    logo: '',
+    currencyId: 0,
+    currency: ''
+  }
   logo! : string;
 
   ngOnInit(): void {
-    this.company = this.companyService.getCompanyData();
-
-    if(this.companyService.companyLogo){
-      this.logo = this.companyService.companyLogo;
-    }
-    else{
-      if(this.company.logo){
-        const photoName = this.company.logo;
-        const token = this.authService.token;
-  
-        this.logo = `${environment.baseUrl}/Company/GetCompanyLogo?photoName=${photoName}&token=${token}`;
-  
-        localStorage.setItem('companyLogo', this.logo);
-        this.companyService.companyLogo = this.logo;
-      }
-    }
-
-    
-
-    const data = {
-      "searchKeyword": "",
-      "pageIndex": 0,
-      "pageSize": 0
-    };
-    this.companyService.GetAllCurrency(data).subscribe(
+    this.companyService.companyDetails(this.authService.companyId).subscribe(
       (response)=>{
-        if (response?.data?.result) {
-          const matchedCurrency = response.data.result.find(
-            (currency: any) => currency.id === this.company.currencyId
-          );
-  
-          if (matchedCurrency) {
-            this.company.currency = matchedCurrency.name;
-          }
+        this.company = response.data;
+        localStorage.setItem('companyData', JSON.stringify(response.data));
+
+        if(this.company.logo){
+          const photoName = this.company.logo;
+          const token = this.authService.token;
+    
+          this.logo = `${environment.baseUrl}/Company/GetCompanyLogo?photoName=${photoName}&token=${token}`;
+    
+          localStorage.setItem('companyLogo', this.logo);
+          this.companyService.companyLogo = this.logo;
         }
+        
+        const data = {
+          "searchKeyword": "",
+          "pageIndex": 0,
+          "pageSize": 0
+        };
+    
+        this.companyService.GetAllCurrency(data).subscribe(
+          (response)=>{
+            if (response?.data?.result) {
+              const matchedCurrency = response.data.result.find(
+                (currency: any) => currency.id === this.company.currencyId
+              );
+      
+              if (matchedCurrency) {
+                this.company.currency = matchedCurrency.name;
+              }
+            }
+          },
+          (error)=>{
+            console.log(error);
+          }
+        )
       },
       (error)=>{
         console.log(error);

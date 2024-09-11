@@ -11,7 +11,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./employees.component.css']
 })
 export class EmployeesComponent implements OnInit{
-  constructor (private employeeService : EmployeeService, private authService : AuthService, private route : Router){}
+  constructor (
+    private employeeService : EmployeeService,
+    private authService : AuthService,
+    private route : Router
+  ){}
 
   openDropdownId : string | null = null;
   pageSize : number = 8;
@@ -30,13 +34,7 @@ export class EmployeesComponent implements OnInit{
       this.token = this.authService.token;
     }
 
-    if(this.employeeService.employees && this.employeeService.employeesCount){
-      this.employees = this.employeeService.employees;
-      this.employeesCount = this.employeeService.employeesCount;
-    }
-    else{
-      this.loadEmployees();
-    }
+    this.loadEmployees();
   }
 
   loadEmployees() {
@@ -56,11 +54,6 @@ export class EmployeesComponent implements OnInit{
           return employee;
         });
         this.employeesCount = response.data.count;
-
-        if(this.pageIndex == 0 && this.searchKeyword == ''){
-          this.employeeService.employees = this.employees;
-          this.employeeService.employeesCount = this.employeesCount;
-        }
       },
       (error) => {
         console.log(error);

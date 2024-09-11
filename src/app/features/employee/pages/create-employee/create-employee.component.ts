@@ -41,30 +41,6 @@ export class CreateEmployeeComponent implements OnInit{
     if(this.creationForm.valid){
       this.employeeService.createEmployee(this.creationForm.value).subscribe(
         (response)=>{
-          const data = {
-            pageSize: 8,
-            pageIndex: 0,
-            searchKeyword: ''
-          };
-          
-          this.employeeService.getAllEmployees(data).subscribe(
-            (response) => {
-              const employees = response.data.result.map((employee: any) => {
-                if (!employee.profilePhotoName) {
-                  const randomColor = this.getRandomTailwindColor();
-                  employee.bg = randomColor;
-                }
-                return employee;
-              });
-              
-              this.employeeService.employees = employees;
-              this.employeeService.employeesCount = response.data.count;
-            },
-            (error) => {
-              console.log(error);
-            }
-          );
-          
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -103,10 +79,4 @@ export class CreateEmployeeComponent implements OnInit{
     }
   }
 
-  tailwindBgColors : string[] = ['bg-red-500','bg-blue-500','bg-green-500','bg-yellow-500','bg-purple-500','bg-pink-500','bg-indigo-500','bg-teal-500','bg-orange-500'];
-
-  getRandomTailwindColor(): string {
-    const randomIndex = Math.floor(Math.random() * this.tailwindBgColors.length);
-    return this.tailwindBgColors[randomIndex];
-  }
 }
